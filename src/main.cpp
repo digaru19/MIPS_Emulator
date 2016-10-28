@@ -1,8 +1,10 @@
 #include <iostream>
-#include <string.h>
 #include <vector>
 #include <stdlib.h>
-#include "helper.h"
+#include "datapath_elements.h"
+#include "instructions.h"
+#include <string>
+#include <string.h>
 
 using namespace std;
 

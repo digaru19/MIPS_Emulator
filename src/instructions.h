@@ -1,34 +1,14 @@
-#include <string.h>
+
+
+#ifndef MIPS_INSTRUCTIONS_SET_H
+#define MIPS_INSTRUCTIONS_SET_H
+
+#include "datapath_elements.h"
 #include <vector>
 #include <string>
-
+#include <string.h>
+#include <stdlib.h>
 using namespace std;
-
-#ifndef MIPS_EMULATOR_H
-#define MIPS_EMULATOR_H
-
-int get_reg_no(string);
-
-class Registers {
-    int Register[32];
-    public:
-        Registers();
-        int read_reg(int);
-        void write_reg(int ,int );
-
-};
-
-class Main_Memory {
-        int Memory[400];
-public:
-        Main_Memory();
-        int read_mem(int);
-        void write_mem(int,int);
-};
-
-extern Registers RegisterFile;
-extern Main_Memory DataMemory;
-
 
 class Instruction {
 public:
@@ -37,8 +17,6 @@ public:
         string instr;
         Instruction() { instr.resize(35); };
 };
-
-
 
 class lw: public Instruction {
     int offset,base,reg_dest;
@@ -67,5 +45,9 @@ public:
         addi(string,string,string,string);
         void execute();
 };
+
+
+
+
 
 #endif
