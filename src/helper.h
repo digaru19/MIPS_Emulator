@@ -18,7 +18,17 @@ class Registers {
 
 };
 
+class Main_Memory {
+        int Memory[400];
+public:
+        Main_Memory();
+        int read_mem(int);
+        void write_mem(int,int);
+};
+
 extern Registers RegisterFile;
+extern Main_Memory DataMemory;
+
 
 class Instruction {
 public:
@@ -28,12 +38,7 @@ public:
         Instruction() { instr.resize(35); };
 };
 
-class _Data_Memory {
-        int Memory[400];
-public:
-        int read_mem(int);
-        void write_mem(int,int);
-};
+
 
 class lw: public Instruction {
     int offset,base,reg_dest;
@@ -43,7 +48,7 @@ class lw: public Instruction {
 };
 
 class sw: public Instruction {
-        int offset,base,reg_dest;
+        int offset,base,src_reg;
     public:
         sw(string,string,string,string);
         void execute();
@@ -54,7 +59,6 @@ int src_reg1,src_reg2,dest_reg;
 public:
         add(string,string,string,string);
         void execute();
-        void display();
 };
 
 class addi : public Instruction {
@@ -62,7 +66,6 @@ int src_reg,value,dest_reg;
 public:
         addi(string,string,string,string);
         void execute();
-        void display();
 };
 
 #endif

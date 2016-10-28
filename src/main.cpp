@@ -7,6 +7,7 @@
 using namespace std;
 
 Registers RegisterFile ;
+Main_Memory DataMemory ;
 
 int main() {
 

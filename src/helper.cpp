@@ -75,6 +75,19 @@ void Registers::write_reg(int data,int dest_reg) {
         Register[dest_reg] = data;
 };
 
+Main_Memory::Main_Memory() {
+    for(int i=0;i<400;i++)
+            Memory[i]=0;
+}
+
+int Main_Memory::read_mem(int mem_cell) {
+    return Memory[mem_cell];
+};
+
+void Main_Memory::write_mem(int location,int data) {
+    Memory[location] = data;
+}
+
 add::add(string s,string x,string y,string z) {
             instr = s;
             dest_reg = get_reg_no(x.c_str());
@@ -98,4 +111,30 @@ addi::addi(string s,string dest,string src,string v) {
 void addi::execute() {
       int src = RegisterFile.read_reg(src_reg);
       RegisterFile.write_reg(value+src,dest_reg);
+}
+
+lw::lw(string s,string dest,string offset_value,string base_reg) {
+    instr = instr;
+    reg_dest = get_reg_no(dest);
+    base = get_reg_no(base_reg);
+    offset = atoi(offset_value.c_str());
+}
+
+void lw::execute() {
+    int _base_value = RegisterFile.read_reg(base);
+    int read_data = DataMemory.read_mem(_base_value + offset);
+    RegisterFile.write_reg(read_data,reg_dest);
+}
+
+sw::sw(string s,string src,string offset_value,string base_reg) {
+    instr = s;
+    src_reg = get_reg_no(src);
+    base = get_reg_no(base_reg);
+    offset = atoi(offset_value.c_str());
+}
+
+void sw::execute() {
+    int _data = RegisterFile.read_reg(src_reg);
+    int _base_value = RegisterFile.read_reg(base);
+    DataMemory.write_mem(offset+_base_value,_data);
 }
