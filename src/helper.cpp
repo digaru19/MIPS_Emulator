@@ -43,55 +43,39 @@ int get_reg_no(char *reg_name) {
     return -1;
 };
 
-class RegFile {
-    int Register[32];
-    public:
-    RegFile() {
+Registers::Registers() {
         for(int i=0;i<32;i++)
             Register[i]=0;
     }
 
-    int read_reg(int src_reg) {
+int Registers::read_reg(int src_reg) {
         return Register[src_reg];
     };
 
-    void write_reg(int data,int dest_reg) {
+void Registers::write_reg(int data,int dest_reg) {
         Register[dest_reg] = data;
-    };
-
 };
-
-/*class Instruction {
-    public:
-        char name[10];
-        Instruction() {
-        strcpy(name,"");
-        };
-};
-*/
-
-class lw: public Instruction {
-    public:
-        int offset;
-        int base;
-        int reg_dest;
-        lw() {
-            strcpy(name,"lw");
-        }
-
-};
-
-class sw: public Instruction {
-    public:
-        int offset,base,mem_dest;
-        sw() {
-            strcpy(name,"sw");
-        }
-
-    };
 
 void add::execute() {
-    c = a+b;
-    std::cout << "\n\t Adding " << a << " and " << b << " , c = " << c;
-
+    std::cout << "\n\t Adding " << src_reg1 << " and " << src_reg2 << " , destination = " << dest_reg ;
+    RegisterFile.write_reg(src_reg1+src_reg2,dest_reg);
 };
+
+add::add(char *s,int x,int y,int z) {
+            strcpy(instr,s);
+            dest_reg = x;
+            src_reg1 = y;
+            src_reg2 = z;
+}
+
+addi::addi(char *s,int dest,int v,int base) {
+      strcpy(instr,s);
+      value = v;
+      src_reg = base;
+      dest_reg = dest;
+}
+
+void addi::execute() {
+      int src = RegisterFile.read_reg(src_reg);
+      RegisterFile.write_reg(value+src,dest_reg);
+}
