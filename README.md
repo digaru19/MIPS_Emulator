@@ -1,2 +1,2 @@
 # MIPS_Emulator
-A simple and basic MIPS emulator using RUST programming language.
+A simple and basic MIPS emulator.
