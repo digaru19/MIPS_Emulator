@@ -85,4 +85,56 @@ void Main_Memory::write_mem(int data,int location) {
     Memory[location] = data;
 }
 
+_Instruction_Memory::_Instruction_Memory() {
+    instructions.reserve(100);
+    PC = 0;
+    size = 0;
+}
 
+void _Instruction_Memory::update_PC(int step) {
+    if(PC + step >= 0 && PC + step <= size)
+        PC = PC + step;
+}
+
+void _Instruction_Memory::add_instruction(string instr) {
+
+    vector <string> tokens(6);
+    char s[50],*p;
+    Instruction_Set *temp;
+    tokens.clear();
+
+    p = NULL;
+
+    strcpy(s,instr.c_str());
+    p = strtok(s," ,()");
+    while(p!=NULL) {
+    tokens.push_back(p);
+    p = strtok(NULL," ,()");
+    }
+
+    temp = Instruction_Set::create_instr_obj(instr,tokens);
+    if(temp != NULL) {
+        size++;
+        cout << "\n\n\t " << temp->instr << "  ==  Instruction created successfully !! \n\t size = " << size;
+        //temp->execute();
+        cout << "\n\t Object at :- " << temp;
+        instructions.push_back(temp);
+        }
+    else
+        cout << "\n\t Failed to create Instruction !!";
+}
+
+void _Instruction_Memory::execute_all() {
+    vector<Instruction_Set *>::iterator i ;
+    for(i=instructions.begin();i!=instructions.end();i++)
+        {
+            (*i)->execute();
+        }
+}
+
+bool _Instruction_Memory::execute_next() {
+    if(PC >= size)
+        return false;
+    instructions[PC]->execute();
+    update_PC();
+}

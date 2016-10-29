@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Instruction *Instruction::create_instr_obj(string instr, vector<string>& tokens) {
+Instruction_Set *Instruction_Set::create_instr_obj(string instr, vector<string>& tokens) {
     string instr_name = tokens[0];
 
     if(instr_name == "add") {

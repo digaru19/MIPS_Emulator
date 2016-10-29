@@ -10,6 +10,8 @@ using namespace std;
 
 int get_reg_no(string);
 
+class Instruction_Set;
+
 class Registers {
     int Register[32];
     public:
@@ -27,9 +29,23 @@ public:
         void write_mem(int,int);
 };
 
+class _Instruction_Memory {
+public:
+        vector < Instruction_Set * > instructions;
+        int PC;
+        int size;
+
+        _Instruction_Memory();
+        bool execute_next();
+        void update_PC(int step=1);
+        void add_instruction(string);
+        void execute_all();
+
+};
+
 extern Registers RegisterFile;
 extern Main_Memory DataMemory;
-
+extern _Instruction_Memory InstructionMemory;
 
 
 #endif
