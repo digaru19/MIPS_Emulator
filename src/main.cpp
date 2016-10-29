@@ -16,7 +16,6 @@ Registers RegisterFile ;
 Main_Memory DataMemory ;
 
 int main() {
-
     char s[50],t[50] ;
     char *p ;
     int i=0;
@@ -33,13 +32,20 @@ int main() {
     cout << "\n\n";
     i = 0;
 
-    while(InstructionMemory.execute_next());
+    bool d = true;
 
-    cout << "\n";
-    for(int e=0;e<=31;e++) {
+    while(d) {
+    //InstructionMemory.display_instr();
+    d = InstructionMemory.execute_next();
+    cin.ignore();
+    //cout << "\n";
+    cout << "\n\t Register[t2]  =  " << RegisterFile.read_reg(10);
+    /*for(int e=0;e<=31;e++) {
         cout << "\n\t Register[" << e << "]  =  " << RegisterFile.read_reg(e);
     }
-    cin.ignore();
+    */
+
+    }
 
     return 0;
 

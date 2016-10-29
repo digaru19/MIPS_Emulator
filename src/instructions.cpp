@@ -2,6 +2,7 @@
 #include "datapath_elements.h"
 #include <vector>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -38,8 +39,14 @@ Instruction_Set *Instruction_Set::create_instr_obj(string instr, vector<string>&
     else if(instr_name == "ori") {
         return new _ori(instr,tokens[1],tokens[2],tokens[3]);
     }
-     else if(instr_name == "sll") {
+    else if(instr_name == "sll") {
         return new sll(instr,tokens[1],tokens[2],tokens[3]);
+    }
+    else if(instr_name == "slt") {
+        return new slt(instr,tokens[1],tokens[2],tokens[3]);
+    }
+    else if(instr_name == "beq") {
+        return new beq(instr,tokens[1],tokens[2],tokens[3]);
     }
     else return NULL;
 };
@@ -182,13 +189,13 @@ void sll::execute() {
     RegisterFile.write_reg(rs << shamt , dest_reg);
 };
 
-/*
+
 slt::slt(string s,string dest,string reg_l,string reg_r) {
     instr = s;
     reg_rhs = get_reg_no(reg_r);
     reg_lhs = get_reg_no(reg_l);
     dest_reg = get_reg_no(dest);
-}
+};
 
 void slt::execute() {
     int reg_data_1 = RegisterFile.read_reg(reg_lhs);
@@ -198,4 +205,19 @@ void slt::execute() {
     else
         RegisterFile.write_reg(0,dest_reg);
 }
-*/
+
+beq::beq(string s,string rs,string rt,string offset_value) {
+    instr = s;
+    reg_1 = get_reg_no(rs);
+    reg_2 = get_reg_no(rt);
+    offset = atoi(offset_value.c_str());
+};
+
+void beq::execute() {
+    int r1 = RegisterFile.read_reg(reg_1);
+    int r2 = RegisterFile.read_reg(reg_2);
+    cout << "\n\t Checking  " << r1 << "  and  " << r2;
+    if(r1 == r2)
+        InstructionMemory.update_PC(offset - 1);
+};
+

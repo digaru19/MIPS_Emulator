@@ -37,6 +37,7 @@ class _Instruction_Memory {
         int size;
     public:
         _Instruction_Memory();
+        void display_instr();
         bool execute_next();
         void update_PC(int step=1);
         void add_instruction(string);

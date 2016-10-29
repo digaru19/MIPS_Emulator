@@ -138,3 +138,8 @@ bool _Instruction_Memory::execute_next() {
     instructions[PC]->execute();
     update_PC();
 }
+
+void _Instruction_Memory::display_instr() {
+    cout << "\n\t" << instructions[PC]->instr;
+
+}

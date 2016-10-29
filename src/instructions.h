@@ -93,13 +93,19 @@ public:
         void execute();
 };
 
-/*
-class slt : public Instruction_set {
+class slt : public Instruction_Set {
 int dest_reg,reg_lhs,reg_rhs;
 public:
         slt(string,string,string,string);
         void execute();
-}
-*/
+};
+
+class beq : public Instruction_Set {
+int reg_1,reg_2,offset;
+public:
+        beq(string,string,string,string);
+        void execute();
+};
+
 
 #endif
