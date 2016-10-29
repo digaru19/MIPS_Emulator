@@ -72,4 +72,26 @@ public:
         void execute();
 };
 
+class _or : public Instruction {
+int src_reg1,src_reg2,dest_reg;
+public:
+        _or(string,string,string,string);
+        void execute();
+};
+
+class _ori : public Instruction {
+int src_reg,value,dest_reg;
+public:
+        _ori(string,string,string,string);
+        void execute();
+};
+
+class sll : public Instruction {
+int src_reg,shamt,dest_reg;
+public:
+        sll(string,string,string,string);
+        void execute();
+};
+
+
 #endif

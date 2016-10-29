@@ -5,6 +5,7 @@
 #include "instructions.h"
 #include <string>
 #include <string.h>
+#include <fstream>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ int main() {
     char *p ;
     int i=0;
     int x,y,z,j=0;
+    ifstream mips_code("code.mips");
 
     vector <string> tokens(6);
     string h;
@@ -28,8 +30,9 @@ int main() {
     tokens.clear();
     j = 0;
     p = NULL;
-    cout << "\n Enter string :-  ";
-    cin.getline(s,49);
+    //cout << "\n Enter string :-  ";
+    //cin.getline(s,49);
+    mips_code.getline(s,40);
     strcpy(t,s);
     p = strtok(s," ,()");
     while(p!=NULL && j<50) {
@@ -39,14 +42,14 @@ int main() {
     tokens.push_back(p);
     p = strtok(NULL," ,()");
     }
-    cout << "\n\t Calling Factory object method .. ";
+    //cout << "\n\t Calling Factory object method .. ";
     temp = Instruction::create_instr_obj(t,tokens);
     if(temp != NULL) {
-        cout << "\n\t   Created successfully !!";
+        cout << "\n\t Instruction created successfully !!";
         functions.push_back(temp);
         }
     else
-        cout << "\n\t   Failed to create !!";
+        cout << "\n\t Failed to create Instruction !!";
     i++;
     }
     cout<< "\n\n\t beginning execution .. ";
@@ -57,7 +60,7 @@ int main() {
         (*m)->execute();
         (*m)->instr;
     }
-    cin.ignore();
+    //cin.ignore();
     cout << "\n";
     for(int e=0;e<=31;e++) {
         cout << "\n\t Register[" << e << "]  =  " << RegisterFile.read_reg(e);
