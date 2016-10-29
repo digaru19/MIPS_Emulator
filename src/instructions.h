@@ -1,5 +1,3 @@
-
-
 #ifndef MIPS_INSTRUCTIONS_SET_H
 #define MIPS_INSTRUCTIONS_SET_H
 
@@ -46,8 +44,32 @@ public:
         void execute();
 };
 
+class sub : public Instruction {
+int src_reg1,src_reg2,dest_reg;
+public:
+        sub(string,string,string,string);
+        void execute();
+};
 
+class subi : public Instruction {
+int src_reg,value,dest_reg;
+public:
+        subi(string,string,string,string);
+        void execute();
+};
 
+class _and : public Instruction {
+int src_reg1,src_reg2,dest_reg;
+public:
+        _and(string,string,string,string);
+        void execute();
+};
 
+class _andi : public Instruction {
+int src_reg,value,dest_reg;
+public:
+        _andi(string,string,string,string);
+        void execute();
+};
 
 #endif

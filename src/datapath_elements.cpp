@@ -6,6 +6,9 @@
 
 using namespace std;
 
+// Function to get the register number from the arguments
+// passed in the MIPS instruction.
+// Example :- $t3 = 11 , $v1 = 3 , $s4 = 20 , etc.
 int get_reg_no(string reg) {
     char reg_name[8];
     strcpy(reg_name,reg.c_str());
@@ -50,29 +53,35 @@ int get_reg_no(string reg) {
     return -1;
 };
 
+// Initialize registers to 0
 Registers::Registers() {
         for(int i=0;i<32;i++)
             Register[i]=0;
     }
 
+// Member function to read a register using a Register File
 int Registers::read_reg(int src_reg) {
         return Register[src_reg];
     };
 
+// Member function to write to a register using a Register File
 void Registers::write_reg(int data,int dest_reg) {
         Register[dest_reg] = data;
 };
 
+// Initialize all the cells of the main memory to zero
 Main_Memory::Main_Memory() {
     for(int i=0;i<400;i++)
             Memory[i]=0;
 }
 
+// Public member function to read a memory cell
 int Main_Memory::read_mem(int mem_cell) {
     return Memory[mem_cell];
 };
 
-void Main_Memory::write_mem(int location,int data) {
+// Public member function to write to a memory cell
+void Main_Memory::write_mem(int data,int location) {
     Memory[location] = data;
 }
 
