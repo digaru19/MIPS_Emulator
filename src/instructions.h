@@ -93,5 +93,13 @@ public:
         void execute();
 };
 
+/*
+class slt : public Instruction_set {
+int dest_reg,reg_lhs,reg_rhs;
+public:
+        slt(string,string,string,string);
+        void execute();
+}
+*/
 
 #endif

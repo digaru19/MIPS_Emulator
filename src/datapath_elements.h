@@ -1,10 +1,12 @@
-#ifndef MIPS_EMULATOR_H
-#define MIPS_EMULATOR_H
 
 #include <vector>
 #include <string>
 #include "instructions.h"
 #include <string.h>
+
+#ifndef MIPS_EMULATOR_H
+#define MIPS_EMULATOR_H
+
 
 using namespace std;
 
@@ -30,17 +32,15 @@ public:
 };
 
 class _Instruction_Memory {
-public:
         vector < Instruction_Set * > instructions;
         int PC;
         int size;
-
+    public:
         _Instruction_Memory();
         bool execute_next();
         void update_PC(int step=1);
         void add_instruction(string);
         void execute_all();
-
 };
 
 extern Registers RegisterFile;

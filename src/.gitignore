@@ -2,5 +2,7 @@
 /a.out
 /compile
 /*.mips
+/*.o
+/main
 
 

@@ -2,7 +2,9 @@
 #include <vector>
 #include <stdlib.h>
 #include "datapath_elements.h"
+#include "datapath_elements.cpp"
 #include "instructions.h"
+#include "instructions.cpp"
 #include <string>
 #include <string.h>
 #include <fstream>
@@ -21,8 +23,6 @@ int main() {
     int x,y,z,j=0;
     ifstream mips_code("code.mips");
 
-    cout << "\n\t InstructionMemory at :- " << &InstructionMemory;
-
     while(!mips_code.eof()) {
     mips_code.getline(s,40);
     InstructionMemory.add_instruction(s);
@@ -33,10 +33,8 @@ int main() {
     cout << "\n\n";
     i = 0;
 
-    //cout << "\n\t Size of instruction memory :- " <<  InstructionMemory.instructions.size() << endl;;
-
     while(InstructionMemory.execute_next());
-    //cin.ignore();
+
     cout << "\n";
     for(int e=0;e<=31;e++) {
         cout << "\n\t Register[" << e << "]  =  " << RegisterFile.read_reg(e);

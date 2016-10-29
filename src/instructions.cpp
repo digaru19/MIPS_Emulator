@@ -182,4 +182,20 @@ void sll::execute() {
     RegisterFile.write_reg(rs << shamt , dest_reg);
 };
 
+/*
+slt::slt(string s,string dest,string reg_l,string reg_r) {
+    instr = s;
+    reg_rhs = get_reg_no(reg_r);
+    reg_lhs = get_reg_no(reg_l);
+    dest_reg = get_reg_no(dest);
+}
 
+void slt::execute() {
+    int reg_data_1 = RegisterFile.read_reg(reg_lhs);
+    int reg_data_2 = RegisterFile.read_reg(reg_rhs);
+    if(reg_data_1 < reg_data_2)
+        RegisterFile.write_reg(1,dest_reg);
+    else
+        RegisterFile.write_reg(0,dest_reg);
+}
+*/
