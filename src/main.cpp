@@ -16,8 +16,9 @@ Registers RegisterFile ;
 Main_Memory DataMemory ;
 
 int main() {
+
     char s[50],t[50] ;
-    char *p ;
+    char *p;
     int i=0;
     int x,y,z,j=0;
     ifstream mips_code("code.mips");
@@ -34,12 +35,16 @@ int main() {
 
     bool d = true;
 
-    while(d) {
-    //InstructionMemory.display_instr();
-    d = InstructionMemory.execute_next();
-    cin.ignore();
+    while(InstructionMemory.PC_is_valid()) {
+
+    cout << "\n";
+    InstructionMemory.display_instr();
+    InstructionMemory.execute_next();
     //cout << "\n";
     cout << "\n\t Register[t2]  =  " << RegisterFile.read_reg(10);
+
+    cout << "\n\t PC = " << InstructionMemory.get_PC();
+    cin.ignore();
     /*for(int e=0;e<=31;e++) {
         cout << "\n\t Register[" << e << "]  =  " << RegisterFile.read_reg(e);
     }

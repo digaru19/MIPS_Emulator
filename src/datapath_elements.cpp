@@ -115,13 +115,12 @@ void _Instruction_Memory::add_instruction(string instr) {
     temp = Instruction_Set::create_instr_obj(instr,tokens);
     if(temp != NULL) {
         size++;
-        cout << "\n\n\t " << temp->instr << "  ==  Instruction created successfully !! \n\t size = " << size;
+        cout << "\n\t " << temp->instr << "  ==  Instruction created successfully !!" ;
         //temp->execute();
-        cout << "\n\t Object at :- " << temp;
+        //cout << "\n\t Object at :- " << temp;
         instructions.push_back(temp);
         }
-    else
-        cout << "\n\t Failed to create Instruction !!";
+
 }
 
 void _Instruction_Memory::execute_all() {
@@ -140,6 +139,17 @@ bool _Instruction_Memory::execute_next() {
 }
 
 void _Instruction_Memory::display_instr() {
+    if(PC < size)
     cout << "\n\t" << instructions[PC]->instr;
+}
 
+int _Instruction_Memory::get_PC() {
+    return PC;
+}
+
+bool _Instruction_Memory::PC_is_valid() {
+    if(PC >= 0 && PC < size)
+        return true;
+    else
+        return false;
 }
