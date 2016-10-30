@@ -6,6 +6,13 @@
 
 using namespace std;
 
+int parse_int(const char str[20]) {
+    if(str[1]=='x' or str[1]=='X')
+        strtol(str,NULL,16);
+    else
+        strtol(str,NULL,10);
+}
+
 Instruction_Set *Instruction_Set::create_instr_obj(string instr, vector<string>& tokens) {
     string instr_name = tokens[0];
 
@@ -143,7 +150,7 @@ void add::execute() {
 
 addi::addi(string s,string dest,string src,string v) {
       instr = s;
-      value = atoi(v.c_str());
+      value = parse_int(v.c_str());
       src_reg = get_reg_no(src);
       dest_reg = get_reg_no(dest);
 }
@@ -166,7 +173,7 @@ void _and::execute() {
 
 _andi::_andi(string s,string dest,string src,string imm) {
     instr = s;
-    value = atoi(imm.c_str());
+    value = parse_int(imm.c_str());
     src_reg = get_reg_no(src);
     dest_reg = get_reg_no(dest);
 }
@@ -179,7 +186,7 @@ beq::beq(string s,string rs,string rt,string offset_value) {
     instr = s;
     reg_1 = get_reg_no(rs);
     reg_2 = get_reg_no(rt);
-    target = atoi(offset_value.c_str());
+    target = parse_int(offset_value.c_str());
 };
 void beq::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -193,7 +200,7 @@ bne::bne(string s,string rs,string rt,string offset_value) {
     instr = s;
     reg_1 = get_reg_no(rs);
     reg_2 = get_reg_no(rt);
-    target = atoi(offset_value.c_str());
+    target = parse_int(offset_value.c_str());
 };
 void bne::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -206,7 +213,7 @@ void bne::execute() {
 bgez::bgez(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = atoi(jump_to.c_str());
+    target = parse_int(jump_to.c_str());
 }
 void bgez::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -217,7 +224,7 @@ void bgez::execute() {
 blez::blez(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = atoi(jump_to.c_str());
+    target = parse_int(jump_to.c_str());
 }
 void blez::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -228,7 +235,7 @@ void blez::execute() {
 bgtz::bgtz(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = atoi(jump_to.c_str());
+    target = parse_int(jump_to.c_str());
 }
 void bgtz::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -239,7 +246,7 @@ void bgtz::execute() {
 bltz::bltz(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = atoi(jump_to.c_str());
+    target = parse_int(jump_to.c_str());
 }
 void bltz::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -250,7 +257,7 @@ void bltz::execute() {
 bgezal::bgezal(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = atoi(jump_to.c_str());
+    target = parse_int(jump_to.c_str());
 }
 void bgezal::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -264,7 +271,7 @@ void bgezal::execute() {
 bltzal::bltzal(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = atoi(jump_to.c_str());
+    target = parse_int(jump_to.c_str());
 }
 void bltzal::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -300,7 +307,7 @@ void divu::execute() {
 }
 
 j::j(string s,string offset) {
-    target = atoi(offset.c_str());
+    target = parse_int(offset.c_str());
     instr = s;
 }
 void j::execute() {
@@ -319,7 +326,7 @@ void jr::execute() {
 
 jal::jal(string s,string offset) {
     instr = s;
-    target = atoi(offset.c_str());
+    target = parse_int(offset.c_str());
 }
 void jal::execute() {
     int curr_PC = InstructionMemory.get_PC() + 1;
@@ -332,7 +339,7 @@ lw::lw(string s,string dest,string offset_value,string base_reg) {
     instr = instr;
     reg_dest = get_reg_no(dest);
     base = get_reg_no(base_reg);
-    offset = atoi(offset_value.c_str());
+    offset = parse_int(offset_value.c_str());
 }
 void lw::execute() {
     int _base_value = RegisterFile.read_reg(base);
@@ -394,7 +401,7 @@ void _or::execute() {
 
 _ori::_ori(string s,string dest,string src,string imm) {
     instr = s;
-    value = atoi(imm.c_str());
+    value = parse_int(imm.c_str());
     src_reg = get_reg_no(src);
     dest_reg = get_reg_no(dest);
 }
@@ -407,7 +414,7 @@ sll::sll(string s,string dest,string src,string sa) {
     instr = s;
     dest_reg = get_reg_no(dest);
     src_reg = get_reg_no(src);
-    shamt = atoi(sa.c_str());
+    shamt = parse_int(sa.c_str());
 }
 void sll::execute() {
     int rs = RegisterFile.read_reg(src_reg);
@@ -418,7 +425,7 @@ srl::srl(string s,string dest,string src,string sa) {
     instr = s;
     dest_reg = get_reg_no(dest);
     src_reg = get_reg_no(src);
-    shamt = atoi(sa.c_str());
+    shamt = parse_int(sa.c_str());
 }
 void srl::execute() {
     unsigned int rs = RegisterFile.read_reg(src_reg);
@@ -429,7 +436,7 @@ sra::sra(string s,string dest,string src,string sa) {
     instr = s;
     dest_reg = get_reg_no(dest);
     src_reg = get_reg_no(src);
-    shamt = atoi(sa.c_str());
+    shamt = parse_int(sa.c_str());
 }
 void sra::execute() {
     int rs = RegisterFile.read_reg(src_reg);
@@ -494,7 +501,7 @@ slti::slti(string s,string dest,string reg_l,string imm) {
     instr = s;
     dest_reg = get_reg_no(dest);
     reg_lhs = get_reg_no(reg_l);
-    value = atoi(imm.c_str());
+    value = parse_int(imm.c_str());
 }
 void slti::execute() {
     int src_reg_data = RegisterFile.read_reg(reg_lhs);
@@ -508,7 +515,7 @@ sltiu::sltiu(string s,string dest,string reg_l,string imm) {
     instr = s;
     dest_reg = get_reg_no(dest);
     reg_lhs = get_reg_no(reg_l);
-    value = atoi(imm.c_str());
+    value = parse_int(imm.c_str());
 }
 void sltiu::execute() {
     unsigned int src_reg_data = RegisterFile.read_reg(reg_lhs);
@@ -522,7 +529,7 @@ sw::sw(string s,string src,string offset_value,string base_reg) {
     instr = s;
     src_reg = get_reg_no(src);
     base = get_reg_no(base_reg);
-    offset = atoi(offset_value.c_str());
+    offset = parse_int(offset_value.c_str());
 }
 void sw::execute() {
     int _data = RegisterFile.read_reg(src_reg);
@@ -556,7 +563,7 @@ void subu::execute() {
 
 subi::subi(string s,string dest,string src,string imm) {
     instr = s;
-    value = atoi(imm.c_str());
+    value = parse_int(imm.c_str());
     src_reg = get_reg_no(src);
     dest_reg = get_reg_no(dest);
 }
@@ -579,7 +586,7 @@ void _xor::execute() {
 
 _xori::_xori(string s,string dest,string src,string imm) {
     instr = s;
-    value = atoi(imm.c_str());
+    value = parse_int(imm.c_str());
     src_reg = get_reg_no(src);
     dest_reg = get_reg_no(dest);
 }
