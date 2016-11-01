@@ -44,16 +44,6 @@
      <string>Registers</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>390</y>
-      <width>64</width>
-      <height>23</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -70,6 +60,25 @@
     </property>
     <property name="text">
      <string>Program Counter :-</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="PC_Value">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>390</y>
+      <width>61</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QWidget" name="">
@@ -711,8 +720,8 @@
    <zorder>formLayoutWidget_3</zorder>
    <zorder>horizontalSpacer_2</zorder>
    <zorder>horizontalSpacer_3</zorder>
-   <zorder>lcdNumber</zorder>
    <zorder>label</zorder>
+   <zorder>PC_Value</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

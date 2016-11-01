@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QLabel>
+#include "instructions.h"
+#include "datapath_elements.h"
 
 int main(int argc, char *argv[])
 {

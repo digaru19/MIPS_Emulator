@@ -2,9 +2,15 @@
 #include "ui_mainwindow.h"
 #include <QLabel>
 #include <QVBoxLayout>
-#include <QFrame>
+#include <fstream>
 #include <QListWidgetItem>
 #include <stdlib.h>
+#include "instructions.h"
+#include "datapath_elements.h"
+
+Registers RegisterFile;
+_Instruction_Memory InstructionMemory;
+Main_Memory DataMemory;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,10 +18,19 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     strcpy(k,"A");
-    QListWidgetItem *item1 = new QListWidgetItem(k);
-    k[0]++;
-    ui->listWidget->addItem(item1);
-
+    ifstream mips_code("code.mips");
+    char s[50];
+    while(!mips_code.eof()) {
+        mips_code.getline(s,40);
+        if(InstructionMemory.add_instruction(s))
+        {
+            QListWidgetItem *item = new QListWidgetItem(s);
+            InstructionMemory.update_PC();
+            ui->listWidget->addItem(item);
+        }
+        }
+    InstructionMemory.reset_PC();
+    mips_code.close();
 }
 
 MainWindow::~MainWindow()
@@ -25,8 +40,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_next_instr_clicked()
 {
-    QListWidgetItem *item1 = new QListWidgetItem(k);
-    k[0]++;
-    ui->listWidget->addItem(item1);
-    ui->listWidget->item(((int)k[0])-66)->setSelected(true);
+    if(InstructionMemory.PC_is_valid()) {
+    ui->listWidget->item(InstructionMemory.get_PC())->setSelected(true);
+    ui->PC_Value->setText(QString::fromStdString(to_string(InstructionMemory.get_PC())));
+    InstructionMemory.update_PC();
+    }
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+
+
 }

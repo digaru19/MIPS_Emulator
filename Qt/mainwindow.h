@@ -20,6 +20,8 @@ public:
 private slots:
     void on_next_instr_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
