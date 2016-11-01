@@ -82,6 +82,7 @@ int Main_Memory::read_mem(int mem_cell) {
 
 // Public member function to write to a memory cell
 void Main_Memory::write_mem(int data,int location) {
+    cout << "\n ++ In write_mem execute, writing " << data << " into Memory[ "<< location <<" ]";
     Memory[location] = data;
 }
 

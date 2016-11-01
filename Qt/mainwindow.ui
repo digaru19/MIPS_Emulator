@@ -74,6 +74,10 @@
     <property name="layoutDirection">
      <enum>Qt::RightToLeft</enum>
     </property>
+    <property name="styleSheet">
+     <string notr="true">text-align : right
+</string>
+    </property>
     <property name="text">
      <string>0</string>
     </property>
@@ -81,7 +85,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -120,7 +124,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -146,7 +150,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_5"/>
+        <widget class="QLineEdit" name="r2"/>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_7">
@@ -162,10 +166,10 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit_6"/>
+        <widget class="QLineEdit" name="r3"/>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_7"/>
+        <widget class="QLineEdit" name="r4"/>
        </item>
        <item row="3" column="0">
         <widget class="QLabel" name="label_8">
@@ -272,25 +276,25 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLineEdit" name="lineEdit_8"/>
+        <widget class="QLineEdit" name="r5"/>
        </item>
        <item row="5" column="1">
-        <widget class="QLineEdit" name="lineEdit_9"/>
+        <widget class="QLineEdit" name="r6"/>
        </item>
        <item row="6" column="1">
-        <widget class="QLineEdit" name="lineEdit_10"/>
+        <widget class="QLineEdit" name="r7"/>
        </item>
        <item row="7" column="1">
-        <widget class="QLineEdit" name="lineEdit_11"/>
+        <widget class="QLineEdit" name="r8"/>
        </item>
        <item row="8" column="1">
-        <widget class="QLineEdit" name="lineEdit_12"/>
+        <widget class="QLineEdit" name="r9"/>
        </item>
        <item row="9" column="1">
-        <widget class="QLineEdit" name="lineEdit_13"/>
+        <widget class="QLineEdit" name="r10"/>
        </item>
        <item row="10" column="1">
-        <widget class="QLineEdit" name="lineEdit_14"/>
+        <widget class="QLineEdit" name="r11"/>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_37">
@@ -306,7 +310,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit_35"/>
+        <widget class="QLineEdit" name="r1"/>
        </item>
       </layout>
      </item>
@@ -339,7 +343,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit_15"/>
+        <widget class="QLineEdit" name="r12"/>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_17">
@@ -355,7 +359,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_16"/>
+        <widget class="QLineEdit" name="r13"/>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_18">
@@ -371,7 +375,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit_17"/>
+        <widget class="QLineEdit" name="r14"/>
        </item>
        <item row="3" column="0">
         <widget class="QLabel" name="label_19">
@@ -387,7 +391,7 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_18"/>
+        <widget class="QLineEdit" name="r15"/>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_20">
@@ -403,7 +407,7 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLineEdit" name="lineEdit_19"/>
+        <widget class="QLineEdit" name="r16"/>
        </item>
        <item row="5" column="0">
         <widget class="QLabel" name="label_21">
@@ -419,7 +423,7 @@
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QLineEdit" name="lineEdit_20"/>
+        <widget class="QLineEdit" name="r17"/>
        </item>
        <item row="6" column="0">
         <widget class="QLabel" name="label_22">
@@ -435,7 +439,7 @@
         </widget>
        </item>
        <item row="6" column="1">
-        <widget class="QLineEdit" name="lineEdit_21"/>
+        <widget class="QLineEdit" name="r18"/>
        </item>
        <item row="7" column="0">
         <widget class="QLabel" name="label_23">
@@ -451,7 +455,7 @@
         </widget>
        </item>
        <item row="7" column="1">
-        <widget class="QLineEdit" name="lineEdit_22"/>
+        <widget class="QLineEdit" name="r19"/>
        </item>
        <item row="8" column="0">
         <widget class="QLabel" name="label_24">
@@ -467,7 +471,7 @@
         </widget>
        </item>
        <item row="8" column="1">
-        <widget class="QLineEdit" name="lineEdit_23"/>
+        <widget class="QLineEdit" name="r20"/>
        </item>
        <item row="9" column="0">
         <widget class="QLabel" name="label_25">
@@ -483,7 +487,7 @@
         </widget>
        </item>
        <item row="9" column="1">
-        <widget class="QLineEdit" name="lineEdit_24"/>
+        <widget class="QLineEdit" name="r21"/>
        </item>
        <item row="10" column="0">
         <widget class="QLabel" name="label_26">
@@ -499,7 +503,7 @@
         </widget>
        </item>
        <item row="10" column="1">
-        <widget class="QLineEdit" name="lineEdit_25"/>
+        <widget class="QLineEdit" name="r22"/>
        </item>
       </layout>
      </item>
@@ -532,10 +536,10 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_26"/>
+        <widget class="QLineEdit" name="r23"/>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit_27"/>
+        <widget class="QLineEdit" name="r24"/>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_28">
@@ -642,28 +646,28 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_28"/>
+        <widget class="QLineEdit" name="r25"/>
        </item>
        <item row="4" column="1">
-        <widget class="QLineEdit" name="lineEdit_29"/>
+        <widget class="QLineEdit" name="r26"/>
        </item>
        <item row="5" column="1">
-        <widget class="QLineEdit" name="lineEdit_30"/>
+        <widget class="QLineEdit" name="r27"/>
        </item>
        <item row="6" column="1">
-        <widget class="QLineEdit" name="lineEdit_31"/>
+        <widget class="QLineEdit" name="r28"/>
        </item>
        <item row="7" column="1">
-        <widget class="QLineEdit" name="lineEdit_32"/>
+        <widget class="QLineEdit" name="r29"/>
        </item>
        <item row="8" column="1">
-        <widget class="QLineEdit" name="lineEdit_33"/>
+        <widget class="QLineEdit" name="r30"/>
        </item>
        <item row="9" column="1">
-        <widget class="QLineEdit" name="lineEdit_34"/>
+        <widget class="QLineEdit" name="r31"/>
        </item>
        <item row="10" column="1">
-        <widget class="QLineEdit" name="lineEdit_36"/>
+        <widget class="QLineEdit" name="r32"/>
        </item>
        <item row="10" column="0">
         <widget class="QLabel" name="label_36">
@@ -701,25 +705,16 @@
         </widget>
        </item>
        <item row="11" column="1">
-        <widget class="QLineEdit" name="lineEdit_37"/>
+        <widget class="QLineEdit" name="r33"/>
        </item>
       </layout>
      </item>
     </layout>
    </widget>
-   <zorder>next_instr</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>listWidget</zorder>
-   <zorder>label</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>horizontalSpacer</zorder>
    <zorder>label_2</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>label_13</zorder>
-   <zorder>formLayoutWidget</zorder>
-   <zorder>formLayoutWidget_2</zorder>
-   <zorder>formLayoutWidget_3</zorder>
-   <zorder>horizontalSpacer_2</zorder>
-   <zorder>horizontalSpacer_3</zorder>
    <zorder>label</zorder>
    <zorder>PC_Value</zorder>
   </widget>

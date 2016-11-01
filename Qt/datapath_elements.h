@@ -28,7 +28,7 @@ class Registers {
 };
 
 class Main_Memory {
-        int Memory[400];
+        int Memory[800];
 public:
         Main_Memory();
         int read_mem(int);

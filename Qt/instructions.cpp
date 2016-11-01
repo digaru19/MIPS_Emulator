@@ -12,6 +12,7 @@ int parse_int(const char str[20]) {
         integer = strtol(str,NULL,16);
     else
         integer = strtol(str,NULL,10);
+    cout << "\n\t On parsing " << str << " , we got " << integer;
     return integer;
 }
 
@@ -152,7 +153,7 @@ void add::execute() {
 
 addi::addi(string s,string dest,string src,string v) {
       instr = s;
-      value = parse_int(v.c_str());
+      value = atoi(v.c_str());
       src_reg = get_reg_no(src);
       dest_reg = get_reg_no(dest);
 }
@@ -175,7 +176,7 @@ void _and::execute() {
 
 _andi::_andi(string s,string dest,string src,string imm) {
     instr = s;
-    value = parse_int(imm.c_str());
+    value = atoi(imm.c_str());
     src_reg = get_reg_no(src);
     dest_reg = get_reg_no(dest);
 }
@@ -188,7 +189,7 @@ beq::beq(string s,string rs,string rt,string offset_value) {
     instr = s;
     reg_1 = get_reg_no(rs);
     reg_2 = get_reg_no(rt);
-    target = parse_int(offset_value.c_str());
+    target = atoi(offset_value.c_str());
 };
 void beq::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -202,7 +203,7 @@ bne::bne(string s,string rs,string rt,string offset_value) {
     instr = s;
     reg_1 = get_reg_no(rs);
     reg_2 = get_reg_no(rt);
-    target = parse_int(offset_value.c_str());
+    target = atoi(offset_value.c_str());
 };
 void bne::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -215,7 +216,7 @@ void bne::execute() {
 bgez::bgez(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = parse_int(jump_to.c_str());
+    target = atoi(jump_to.c_str());
 }
 void bgez::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -226,7 +227,7 @@ void bgez::execute() {
 blez::blez(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = parse_int(jump_to.c_str());
+    target = atoi(jump_to.c_str());
 }
 void blez::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -237,7 +238,7 @@ void blez::execute() {
 bgtz::bgtz(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = parse_int(jump_to.c_str());
+    target = atoi(jump_to.c_str());
 }
 void bgtz::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -248,7 +249,7 @@ void bgtz::execute() {
 bltz::bltz(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = parse_int(jump_to.c_str());
+    target = atoi(jump_to.c_str());
 }
 void bltz::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -259,7 +260,7 @@ void bltz::execute() {
 bgezal::bgezal(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = parse_int(jump_to.c_str());
+    target = atoi(jump_to.c_str());
 }
 void bgezal::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -273,7 +274,7 @@ void bgezal::execute() {
 bltzal::bltzal(string s,string rs,string jump_to) {
     instr = s;
     reg_1 = get_reg_no(rs);
-    target = parse_int(jump_to.c_str());
+    target = atoi(jump_to.c_str());
 }
 void bltzal::execute() {
     int r1 = RegisterFile.read_reg(reg_1);
@@ -292,8 +293,8 @@ _div::_div(string s,string divident,string divisor) {
 void _div::execute() {
     int divisor = RegisterFile.read_reg(divisor_reg);
     int divident = RegisterFile.read_reg(divident_reg);
-    RegisterFile.write_reg( divident / divisor , 32);   //  LO is 32
-    RegisterFile.write_reg( divident % divisor , 33);   // HI is 33
+    RegisterFile.write_reg( divident / divisor , 33);   //  LO is 33
+    RegisterFile.write_reg( divident % divisor , 32);   // HI is 32
 }
 
 divu::divu(string s,string divident,string divisor) {
@@ -301,15 +302,16 @@ divu::divu(string s,string divident,string divisor) {
     divident_reg = get_reg_no(divident);
     divisor_reg = get_reg_no(divisor);
 }
+
 void divu::execute() {
     unsigned int divisor = RegisterFile.read_reg(divisor_reg);
     unsigned int divident = RegisterFile.read_reg(divident_reg);
-    RegisterFile.write_reg( divident / divisor , 32);   //  LO is 32
-    RegisterFile.write_reg( divident % divisor , 33);   // HI is 33
+    RegisterFile.write_reg( divident / divisor , 33);   //  LO is 33
+    RegisterFile.write_reg( divident % divisor , 32);   // HI is 32
 }
 
 j::j(string s,string offset) {
-    target = parse_int(offset.c_str());
+    target = atoi(offset.c_str());
     instr = s;
 }
 void j::execute() {
@@ -328,7 +330,7 @@ void jr::execute() {
 
 jal::jal(string s,string offset) {
     instr = s;
-    target = parse_int(offset.c_str());
+    target = atoi(offset.c_str());
 }
 void jal::execute() {
     int curr_PC = InstructionMemory.get_PC() + 1;
@@ -341,7 +343,7 @@ lw::lw(string s,string dest,string offset_value,string base_reg) {
     instr = instr;
     reg_dest = get_reg_no(dest);
     base = get_reg_no(base_reg);
-    offset = parse_int(offset_value.c_str());
+    offset = atoi(offset_value.c_str());
 }
 void lw::execute() {
     int _base_value = RegisterFile.read_reg(base);
@@ -357,7 +359,7 @@ mult::mult(string s, string multiplicand,string multiplier) {
 void mult::execute() {
     int multiplicand = RegisterFile.read_reg(multiplicand_reg);
     int multiplier = RegisterFile.read_reg(multiplier_reg);
-    RegisterFile.write_reg(multiplicand * multiplier , 32);
+    RegisterFile.write_reg(multiplicand * multiplier , 33);
 }
 
 multu::multu(string s, string multiplicand,string multiplier) {
@@ -368,7 +370,7 @@ multu::multu(string s, string multiplicand,string multiplier) {
 void multu::execute() {
     unsigned int multiplicand = RegisterFile.read_reg(multiplicand_reg);
     unsigned int multiplier = RegisterFile.read_reg(multiplier_reg);
-    RegisterFile.write_reg(multiplicand * multiplier , 32);
+    RegisterFile.write_reg(multiplicand * multiplier , 33);
 }
 
 mfhi::mfhi(string s,string dest) {
@@ -403,7 +405,7 @@ void _or::execute() {
 
 _ori::_ori(string s,string dest,string src,string imm) {
     instr = s;
-    value = parse_int(imm.c_str());
+    value = atoi(imm.c_str());
     src_reg = get_reg_no(src);
     dest_reg = get_reg_no(dest);
 }
@@ -416,7 +418,7 @@ sll::sll(string s,string dest,string src,string sa) {
     instr = s;
     dest_reg = get_reg_no(dest);
     src_reg = get_reg_no(src);
-    shamt = parse_int(sa.c_str());
+    shamt = atoi(sa.c_str());
 }
 void sll::execute() {
     int rs = RegisterFile.read_reg(src_reg);
@@ -427,7 +429,7 @@ srl::srl(string s,string dest,string src,string sa) {
     instr = s;
     dest_reg = get_reg_no(dest);
     src_reg = get_reg_no(src);
-    shamt = parse_int(sa.c_str());
+    shamt = atoi(sa.c_str());
 }
 void srl::execute() {
     unsigned int rs = RegisterFile.read_reg(src_reg);
@@ -438,7 +440,7 @@ sra::sra(string s,string dest,string src,string sa) {
     instr = s;
     dest_reg = get_reg_no(dest);
     src_reg = get_reg_no(src);
-    shamt = parse_int(sa.c_str());
+    shamt = atoi(sa.c_str());
 }
 void sra::execute() {
     int rs = RegisterFile.read_reg(src_reg);
@@ -503,7 +505,7 @@ slti::slti(string s,string dest,string reg_l,string imm) {
     instr = s;
     dest_reg = get_reg_no(dest);
     reg_lhs = get_reg_no(reg_l);
-    value = parse_int(imm.c_str());
+    value = atoi(imm.c_str());
 }
 void slti::execute() {
     int src_reg_data = RegisterFile.read_reg(reg_lhs);
@@ -517,7 +519,7 @@ sltiu::sltiu(string s,string dest,string reg_l,string imm) {
     instr = s;
     dest_reg = get_reg_no(dest);
     reg_lhs = get_reg_no(reg_l);
-    value = parse_int(imm.c_str());
+    value = atoi(imm.c_str());
 }
 void sltiu::execute() {
     unsigned int src_reg_data = RegisterFile.read_reg(reg_lhs);
@@ -531,11 +533,13 @@ sw::sw(string s,string src,string offset_value,string base_reg) {
     instr = s;
     src_reg = get_reg_no(src);
     base = get_reg_no(base_reg);
-    offset = parse_int(offset_value.c_str());
+    offset = atoi(offset_value.c_str());
 }
+
 void sw::execute() {
     int _data = RegisterFile.read_reg(src_reg);
     int _base_value = RegisterFile.read_reg(base);
+    cout << "\n %% In sw execute, writing " << _data << " into Memory[ "<<offset+_base_value<<" ]";
     DataMemory.write_mem(_data,offset+_base_value);
 }
 
@@ -565,7 +569,7 @@ void subu::execute() {
 
 subi::subi(string s,string dest,string src,string imm) {
     instr = s;
-    value = parse_int(imm.c_str());
+    value = atoi(imm.c_str());
     src_reg = get_reg_no(src);
     dest_reg = get_reg_no(dest);
 }
@@ -588,7 +592,7 @@ void _xor::execute() {
 
 _xori::_xori(string s,string dest,string src,string imm) {
     instr = s;
-    value = parse_int(imm.c_str());
+    value = atoi(imm.c_str());
     src_reg = get_reg_no(src);
     dest_reg = get_reg_no(dest);
 }
