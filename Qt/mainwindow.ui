@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>477</height>
+    <width>682</width>
+    <height>481</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="next_instr">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>30</y>
+      <x>100</x>
+      <y>320</y>
       <width>111</width>
       <height>23</height>
      </rect>
@@ -27,13 +27,13 @@
      <string>Next Instruction</string>
     </property>
    </widget>
-   <widget class="QListView" name="listView">
+   <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>211</width>
-      <height>81</height>
+      <x>30</x>
+      <y>40</y>
+      <width>256</width>
+      <height>261</height>
      </rect>
     </property>
    </widget>

@@ -3,19 +3,18 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QFrame>
+#include <QListWidgetItem>
+#include <stdlib.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    model = new QStringListModel(this);
-    QStringList List;
-    List << "Clair de Lune" << "Reverie" << "Prelude" ;
-    List.push_back("Hello World");
-    model->setStringList(List);
-    ui->listView->setModel(model);
+    strcpy(k,"A");
+    QListWidgetItem *item1 = new QListWidgetItem(k);
+    k[0]++;
+    ui->listWidget->addItem(item1);
 
 }
 
@@ -26,7 +25,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_next_instr_clicked()
 {
-    QStringList k = model->stringList();
-    k.append("Hello WOrld");
-    model->setStringList(k);
+    QListWidgetItem *item1 = new QListWidgetItem(k);
+    k[0]++;
+    ui->listWidget->addItem(item1);
+    ui->listWidget->item(((int)k[0])-66)->setSelected(true);
 }
