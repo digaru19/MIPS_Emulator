@@ -7,10 +7,12 @@
 using namespace std;
 
 int parse_int(const char str[20]) {
+    long integer;
     if(str[1]=='x' or str[1]=='X')
-        strtol(str,NULL,16);
+        integer = strtol(str,NULL,16);
     else
-        strtol(str,NULL,10);
+        integer = strtol(str,NULL,10);
+    return integer;
 }
 
 Instruction_Set *Instruction_Set::create_instr_obj(string instr, vector<string>& tokens) {
