@@ -71,7 +71,7 @@ Instruction_Set *Instruction_Set::create_instr_obj(string instr, vector<string>&
         return new jal(instr,tokens[1]);
     }
     else if(instr_name == "lw") {
-        return new add(instr,tokens[1],tokens[2],tokens[3]);
+        return new lw(instr,tokens[1],tokens[2],tokens[3]);
     }
     else if(instr_name == "mfhi") {
         return new mfhi(instr,tokens[1]);
@@ -92,7 +92,7 @@ Instruction_Set *Instruction_Set::create_instr_obj(string instr, vector<string>&
         return new _ori(instr,tokens[1],tokens[2],tokens[3]);
     }
     else if(instr_name == "sw") {
-        return new add(instr,tokens[1],tokens[2],tokens[3]);
+        return new sw(instr,tokens[1],tokens[2],tokens[3]);
     }
     else if(instr_name == "sub") {
         return new sub(instr,tokens[1],tokens[2],tokens[3]);
@@ -340,11 +340,12 @@ void jal::execute() {
 };
 
 lw::lw(string s,string dest,string offset_value,string base_reg) {
-    instr = instr;
+    instr = s;
     reg_dest = get_reg_no(dest);
     base = get_reg_no(base_reg);
     offset = atoi(offset_value.c_str());
 }
+
 void lw::execute() {
     int _base_value = RegisterFile.read_reg(base);
     int read_data = DataMemory.read_mem(_base_value + offset);
