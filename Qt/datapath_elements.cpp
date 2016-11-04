@@ -158,6 +158,10 @@ int _Instruction_Memory::get_PC() {
     return PC;
 }
 
+int _Instruction_Memory::get_Instruction_size() {
+    return size;
+}
+
 bool _Instruction_Memory::PC_is_valid() {
     if(PC >= 0 && PC < size)
         return true;

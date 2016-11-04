@@ -23,7 +23,7 @@ class Registers {
     public:
         Registers();
         int read_reg(int);
-        void write_reg(int ,int );
+        void write_reg(int data,int dest_reg);
 
 };
 
@@ -47,6 +47,7 @@ class _Instruction_Memory {
         bool add_instruction(string);
         void execute_all();
         int get_PC();
+        int get_Instruction_size();
         void reset_PC();
         bool PC_is_valid();
 };
