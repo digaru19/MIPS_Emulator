@@ -32,7 +32,9 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->listWidget->addItem(item);
         }
         }
+
     ui->next_instr->setDisabled(true);
+    ui->listWidget->setCurrentRow(-1);
     InstructionMemory.reset_PC();
     display_register_values();
     mips_code.close();
@@ -57,11 +59,13 @@ void MainWindow::on_next_instr_clicked()
     display_register_values();
     }
     else if(InstructionMemory.get_Instruction_size() == InstructionMemory.get_PC()) {
+        // Execution is over
         ui->begin_execution->setDisabled(false);
         ui->next_instr->setDisabled(true);
         InstructionMemory.reset_PC();
-        ui->listWidget->item(0)->setSelected(true);
+        //ui->listWidget->item(0)->setSelected(true);
         ui->r2->deselect(); //  <- Included because disabling "Begin Execution" selects the text in r2, might be a bug in Qt
+        ui->listWidget->setCurrentRow(-1);
     }
 
 }
