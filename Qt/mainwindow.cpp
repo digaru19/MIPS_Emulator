@@ -66,6 +66,7 @@ void MainWindow::on_next_instr_clicked()
         //ui->listWidget->item(0)->setSelected(true);
         ui->r2->deselect(); //  <- Included because disabling "Begin Execution" selects the text in r2, might be a bug in Qt
         ui->listWidget->setCurrentRow(-1);
+        allow_reg_edit(true);
     }
 
 }
@@ -170,40 +171,47 @@ void MainWindow::on_begin_execution_clicked()
         ui->begin_execution->setDisabled(true);
         ui->r2->deselect();  //  <- Included because disabling "Begin Execution" selects the text in r2, might be a bug in Qt
         ui->next_instr->setDisabled(false);
+        allow_reg_edit(false);
 
-        ui->r1->setReadOnly(true);
-        ui->r2->setReadOnly(true);
-        ui->r3->setReadOnly(true);
-        ui->r4->setReadOnly(true);
-        ui->r5->setReadOnly(true);
-        ui->r6->setReadOnly(true);
-        ui->r7->setReadOnly(true);
-        ui->r8->setReadOnly(true);
-        ui->r9->setReadOnly(true);
-        ui->r10->setReadOnly(true);
-        ui->r11->setReadOnly(true);
-        ui->r12->setReadOnly(true);
-        ui->r13->setReadOnly(true);
-        ui->r14->setReadOnly(true);
-        ui->r15->setReadOnly(true);
-        ui->r16->setReadOnly(true);
-        ui->r17->setReadOnly(true);
-        ui->r18->setReadOnly(true);
-        ui->r19->setReadOnly(true);
-        ui->r20->setReadOnly(true);
-        ui->r21->setReadOnly(true);
-        ui->r22->setReadOnly(true);
-        ui->r23->setReadOnly(true);
-        ui->r24->setReadOnly(true);
-        ui->r25->setReadOnly(true);
-        ui->r26->setReadOnly(true);
-        ui->r27->setReadOnly(true);
-        ui->r28->setReadOnly(true);
-        ui->r29->setReadOnly(true);
-        ui->r30->setReadOnly(true);
-        ui->r31->setReadOnly(true);
-        ui->r32->setReadOnly(true);         //   HI Register
-        ui->r33->setReadOnly(true);         //   LO Register
     }
 
 }
+
+void MainWindow::allow_reg_edit(bool value) {
+    value = !value;
+    ui->r1->setReadOnly(value);
+    ui->r2->setReadOnly(value);
+    ui->r3->setReadOnly(value);
+    ui->r4->setReadOnly(value);
+    ui->r5->setReadOnly(value);
+    ui->r6->setReadOnly(value);
+    ui->r7->setReadOnly(value);
+    ui->r8->setReadOnly(value);
+    ui->r9->setReadOnly(value);
+    ui->r10->setReadOnly(value);
+    ui->r11->setReadOnly(value);
+    ui->r12->setReadOnly(value);
+    ui->r13->setReadOnly(value);
+    ui->r14->setReadOnly(value);
+    ui->r15->setReadOnly(value);
+    ui->r16->setReadOnly(value);
+    ui->r17->setReadOnly(value);
+    ui->r18->setReadOnly(value);
+    ui->r19->setReadOnly(value);
+    ui->r20->setReadOnly(value);
+    ui->r21->setReadOnly(value);
+    ui->r22->setReadOnly(value);
+    ui->r23->setReadOnly(value);
+    ui->r24->setReadOnly(value);
+    ui->r25->setReadOnly(value);
+    ui->r26->setReadOnly(value);
+    ui->r27->setReadOnly(value);
+    ui->r28->setReadOnly(value);
+    ui->r29->setReadOnly(value);
+    ui->r30->setReadOnly(value);
+    ui->r31->setReadOnly(value);
+    ui->r32->setReadOnly(value);         //   HI Register
+    ui->r33->setReadOnly(value);         //   LO Register
+
+}
+

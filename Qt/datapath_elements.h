@@ -8,6 +8,7 @@
 
 
 using namespace std;
+const int MEMORY_SIZE = 1000; // In 'Words' , i.e. (sizeof(int) x MEMORY_SIZE) bytes
 
 int get_reg_no(string);
 
@@ -28,7 +29,7 @@ class Registers {
 };
 
 class Main_Memory {
-        int Memory[800];
+        int Memory[MEMORY_SIZE];
 public:
         Main_Memory();
         int read_mem(int);

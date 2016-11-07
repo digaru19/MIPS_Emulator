@@ -19,6 +19,7 @@ public:
     void display_register_values();
     void read_register_values();
     void read_UI_reg(QLineEdit *, int );
+    void allow_reg_edit(bool);
 
 private slots:
     void on_next_instr_clicked();

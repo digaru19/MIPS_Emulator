@@ -57,32 +57,33 @@ int get_reg_no(string reg) {
 Registers::Registers() {
         for(int i=0;i<32;i++)
             Register[i]=0;
-    }
+}
 
 // Member function to read a register using a Register File
 int Registers::read_reg(int src_reg) {
         return Register[src_reg];
-    };
+    }
 
 // Member function to write to a register using a Register File
 void Registers::write_reg(int data,int dest_reg) {
         Register[dest_reg] = data;
-};
+}
 
 // Initialize all the cells of the main memory to zero
 Main_Memory::Main_Memory() {
-    for(int i=0;i<400;i++)
+    for(int i=0;i<MEMORY_SIZE;i++)
             Memory[i]=0;
 }
 
 // Public member function to read a memory cell
 int Main_Memory::read_mem(int mem_cell) {
+    mem_cell /= 4;
     return Memory[mem_cell];
-};
+}
 
 // Public member function to write to a memory cell
 void Main_Memory::write_mem(int data,int location) {
-    cout << "\n ++ In write_mem execute, writing " << data << " into Memory[ "<< location <<" ]";
+    location /= 4;
     Memory[location] = data;
 }
 
@@ -123,8 +124,6 @@ bool _Instruction_Memory::add_instruction(string instr) {
     if(temp != NULL) {
         size++;
         cout << "\n\t " << temp->instr << "  ==  Instruction created successfully !!" ;
-        //temp->execute();
-        //cout << "\n\t Object at :- " << temp;
         instructions.push_back(temp);
         return true;
         }
