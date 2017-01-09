@@ -98,6 +98,10 @@ void _Instruction_Memory::update_PC(int step) {
         PC = PC + step;
 }
 
+void _Instruction_Memory::set_PC(int target) {
+    PC = target;
+}
+
 void _Instruction_Memory::reset_PC() {
     PC = 0;
 }
@@ -122,7 +126,7 @@ bool _Instruction_Memory::add_instruction(string instr) {
 
     temp = Instruction_Set::create_instr_obj(instr,tokens);
     if(temp != NULL) {
-        size++;
+        size += 1;
         cout << "\n\t " << temp->instr << "  ==  Instruction created successfully !!" ;
         instructions.push_back(temp);
         return true;

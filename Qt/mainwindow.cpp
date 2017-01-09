@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
 
     ui->next_instr->setDisabled(true);
+    ui->stop_execution->setDisabled(true);
     ui->listWidget->setCurrentRow(-1);
     InstructionMemory.reset_PC();
     display_register_values();
@@ -51,14 +52,13 @@ QString int_to_QStr(int n) {
 void MainWindow::on_next_instr_clicked()
 {
     //std::cout << " \n\t **  PC is :- " << InstructionMemory.get_PC();
-
     if(InstructionMemory.PC_is_valid()) {
     ui->listWidget->item(InstructionMemory.get_PC())->setSelected(true);
     ui->PC_Value->setText(int_to_QStr(InstructionMemory.get_PC()));
     InstructionMemory.execute_next();
     display_register_values();
     }
-    else if(InstructionMemory.get_Instruction_size() == InstructionMemory.get_PC()) {
+    else if(InstructionMemory.get_Instruction_size() >= InstructionMemory.get_PC()) {
         // Execution is over
         ui->begin_execution->setDisabled(false);
         ui->next_instr->setDisabled(true);
@@ -67,6 +67,8 @@ void MainWindow::on_next_instr_clicked()
         ui->r2->deselect(); //  <- Included because disabling "Begin Execution" selects the text in r2, might be a bug in Qt
         ui->listWidget->setCurrentRow(-1);
         allow_reg_edit(true);
+        ui->reset_reg_values->setDisabled(false);
+        ui->stop_execution->setDisabled(true);
     }
 
 }
@@ -125,7 +127,6 @@ void MainWindow::read_register_values() {
 }
 
 void MainWindow::display_register_values() {
-
     ui->r1->setText(int_to_QStr(RegisterFile.read_reg(1)));
     ui->r2->setText(int_to_QStr(RegisterFile.read_reg(2)));
     ui->r3->setText(int_to_QStr(RegisterFile.read_reg(3)));
@@ -164,15 +165,15 @@ void MainWindow::display_register_values() {
 void MainWindow::on_begin_execution_clicked()
 {
     regs_read_success = 1;
-
     read_register_values();
 
     if(regs_read_success == 1) {
         ui->begin_execution->setDisabled(true);
         ui->r2->deselect();  //  <- Included because disabling "Begin Execution" selects the text in r2, might be a bug in Qt
         ui->next_instr->setDisabled(false);
+        ui->reset_reg_values->setDisabled(true);
         allow_reg_edit(false);
-
+        ui->stop_execution->setDisabled(false);
     }
 
 }
@@ -215,3 +216,50 @@ void MainWindow::allow_reg_edit(bool value) {
 
 }
 
+void MainWindow::on_reset_reg_values_clicked()
+{
+    ui->r1->setText("0");
+    ui->r2->setText("0");
+    ui->r3->setText("0");
+    ui->r4->setText("0");
+    ui->r5->setText("0");
+    ui->r6->setText("0");
+    ui->r7->setText("0");
+    ui->r8->setText("0");
+    ui->r9->setText("0");
+    ui->r10->setText("0");
+    ui->r11->setText("0");
+    ui->r12->setText("0");
+    ui->r13->setText("0");
+    ui->r14->setText("0");
+    ui->r15->setText("0");
+    ui->r16->setText("0");
+    ui->r17->setText("0");
+    ui->r18->setText("0");
+    ui->r19->setText("0");
+    ui->r20->setText("0");
+    ui->r21->setText("0");
+    ui->r22->setText("0");
+    ui->r23->setText("0");
+    ui->r24->setText("0");
+    ui->r25->setText("0");
+    ui->r26->setText("0");
+    ui->r27->setText("0");
+    ui->r28->setText("0");
+    ui->r29->setText("0");
+    ui->r30->setText("0");
+    ui->r31->setText("0");
+    ui->r32->setText("0");
+    ui->r33->setText("0");
+}
+
+void MainWindow::on_stop_execution_clicked()
+{
+    ui->begin_execution->setDisabled(false);
+    ui->reset_reg_values->setDisabled(false);
+    ui->next_instr->setDisabled(true);
+    InstructionMemory.reset_PC();
+    ui->r2->deselect(); //  <- Included because disabling "Begin Execution" selects the text in r2, might be a bug in Qt
+    ui->listWidget->setCurrentRow(-1);
+    allow_reg_edit(true);
+}

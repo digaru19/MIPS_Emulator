@@ -45,6 +45,7 @@ class _Instruction_Memory {
         string get_instr();
         bool execute_next();
         void update_PC(int step=1);
+        void set_PC(int target);
         bool add_instruction(string);
         void execute_all();
         int get_PC();

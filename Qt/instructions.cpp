@@ -316,31 +316,38 @@ j::j(string s,string offset) {
     instr = s;
 }
 
-void j::execute() {
-    //int jump_to = (InstructionMemory.get_PC() & 0xf0000000) | (target);
+void j::execute() {     //  j is not PC relative
+    /* The below operation is not how the target address is computed in MIPS, but for the purpose of simple execution of MIPS code in this emulator,
+       the instruction memory is being addressed by sizes of 1, and hence simplified for emulation purposes.
+       The actual operation is :-
+          PC = (PC & 0xf0000000) | (target << 2);
+    */
+    InstructionMemory.set_PC(target -1);
 
-    InstructionMemory.update_PC(target-1);
-};
+}
 
 jr::jr(string s,string src) {
     instr = s;
-    src_reg = get_reg_no(src);
+    src_reg = get_reg_no(src);   // Jump to the address stored in this register
 }
+
 void jr::execute() {
     int jump_to = RegisterFile.read_reg(src_reg);
+    jump_to /= 4;       // jump_to gets the address of the instruction in memory in the size of a word, 4 bytes long
     InstructionMemory.update_PC(jump_to-1);
-};
+}
 
 jal::jal(string s,string offset) {
     instr = s;
     target = parse_int(offset.c_str());
 }
+
 void jal::execute() {
     int curr_PC = InstructionMemory.get_PC() + 1;
     RegisterFile.write_reg(curr_PC,31);
-    int jump_to = (InstructionMemory.get_PC() & 0xf0000000) | (target << 2);
-    InstructionMemory.update_PC(jump_to-1);
-};
+    int jump_to = (InstructionMemory.get_PC() & 0xf0000000) | (target);
+    InstructionMemory.update_PC(jump_to - 1);
+}
 
 lw::lw(string s,string dest,string offset_value,string base_reg) {
     instr = s;
