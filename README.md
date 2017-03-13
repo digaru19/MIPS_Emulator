@@ -1,5 +1,9 @@
 # MIPS_Emulator
 
+##### Contributions [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/digaru19/MIPS_Emulator/issues)
+
+##### Open-Source [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/digaru19/MIPS_Emulator/)      [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+
 A simple and basic MIPS emulator in C++, with UI in Qt.
 
 The following MIPS code is a simple implementation of finding the **Factorial** of the number placed in register *$t2*. 
