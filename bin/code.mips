@@ -1,0 +1,10 @@
+addi $t2,$zero,5
+addi $t4,$zero,1
+addi $t3,$t2,0
+subi $t3,$t3,1
+mult $t2,$t3
+mflo $t2
+beq $t3,$t4,2
+j 3
+addi $v0,$t2,0
+

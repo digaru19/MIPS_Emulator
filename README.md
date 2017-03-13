@@ -35,6 +35,7 @@ The final computed value is placed again in the *$t2* register.
 
 
 TODO :-
+- [ ] Add Build instructions
 - [ ] Add gif instead of screenshots
 - [ ] Add documentation for all the instruction supported in the emulator
 - [ ] Improve UI
