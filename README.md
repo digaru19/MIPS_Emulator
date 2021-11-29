@@ -10,8 +10,6 @@ The following MIPS code is a simple implementation of finding the **Factorial** 
 
 The final computed value is placed again in the *$t2* register.
 
-(*Sorry for the screenshots display :P , a gif of the same will be replacing the screenshots soon*)
-
 #### Screenshot 1
 ![Image 1](Screenshots/1.png "1")   
 
@@ -38,4 +36,3 @@ TODO :-
 - [ ] Add Build instructions
 - [ ] Add gif instead of screenshots
 - [ ] Add documentation for all the instruction supported in the emulator
-- [ ] Improve UI
